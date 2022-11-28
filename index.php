@@ -14,19 +14,17 @@
 <body class="is-preload">
 	<!-- Wrapper -->
 	<div id="wrapper">
-
 		<!-- Header -->
 		<? include_once $_SERVER['DOCUMENT_ROOT'] . '/inc/header.php' ?>
-		
 		<!-- Main -->
 		<div id="main">
-			<div class="inner">
+			<div id="app" class="inner">
 				<header>
 					<h1>이대호 ♡ 이시온<br />
-						2021.11.26 ~ <?=date('Y-m-d')?>
+						2021.11.26 ~ {{ nowDate }}
 					</h1>
-						<!-- <a href="http://html5up.net">HTML5 UP</a> -->
-					
+					<!-- <a href="http://html5up.net">HTML5 UP</a> -->
+
 				</header>
 				<section class="tiles">
 					<article class="style1">
@@ -98,14 +96,30 @@
 				</section>
 			</div>
 		</div>
-
 		<!-- Footer -->
 		<? include_once $_SERVER['DOCUMENT_ROOT'] . '/inc/footer.php' ?>
-
 	</div>
-
-
-
 </body>
 
 </html>
+
+<script>
+	const vm = new Vue({
+		// vm : view model의 약자
+		el: "#app",
+		data() {
+			return {
+				nowDate : '<?=date('Y-m-d H:i:s')?>'
+			}
+		},
+		mounted() {
+			this.getNowDate()
+			setInterval(this.getNowDate.bind(this), 1000)
+		},
+		methods: {
+			getNowDate() {
+				this.nowDate = new Date().YYYYMMDDHHMMSS();
+			}
+		},
+	});
+</script>

@@ -37,8 +37,10 @@
 <script src="/assets/js/util.js"></script>
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/vue.js"></script>
+<script src="/assets/js/common.js"></script>
 <script>
-    axios.defaults.baseURL = 'http://api.486diary.com'
+    // axios.defaults.baseURL = 'http://api.486diary.shop'
+    axios.defaults.baseURL = '/api'
 </script>
 
 

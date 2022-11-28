@@ -75,7 +75,7 @@
 					'board_category' : 'gallery',
 					'pageSize' : 5
 				}
-				axios.get('/board/list', { params : info } ).then(response => {
+				axios.get('/board/list.php', { params : info } ).then(response => {
 					me.list = response.data.list
 					me.total = response.data.total
 				});

@@ -41,7 +41,7 @@
 						<span class="image">
 							<img src="/images/pic02.jpg" alt="" />
 						</span>
-						<a href="news.php">
+						<a href="/src/news/list">
 							<h2>새소식</h2>
 							<div class="content">
 								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>

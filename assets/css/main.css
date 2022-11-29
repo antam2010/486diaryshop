@@ -3347,3 +3347,12 @@ input, select, textarea {
 .fw-b {
 	font-weight: bold;
 }
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.plus {
+	font-size: 1.2em;
+}

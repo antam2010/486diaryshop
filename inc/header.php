@@ -3,7 +3,7 @@
 
         <!-- Logo -->
         <a href="/" class="logo">
-            <span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">486diary</span>
+            <span class="symbol"><img src="/images/logo.svg" alt="" /></span><span class="title">486diary</span>
         </a>
 
         <!-- Nav -->
@@ -18,8 +18,8 @@
 			<h2>Menu</h2>
 			<ul>
 				<li><a href="/">Home</a></li>
-				<li><a href="/gallery.php">Gallery</a></li>
-				<li><a href="/news.php">News</a></li>
+				<li><a href="/src/gallery/list">Gallery</a></li>
+				<li><a href="/src//news/list">News</a></li>
 				<li><a href="generic.php">Consequat dolor</a></li>
 				<li><a href="elements.html">Elements</a></li>
 			</ul>

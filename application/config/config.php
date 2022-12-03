@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 if($_SERVER['HTTP_HOST'] == '486diary.shop') {
     $config['base_url'] = 'http://486diary.shop';
 } else {
-    $config['base_url'] = 'http://local2.486diary.shop';
+    $config['base_url'] = 'http://local.486diary.shop';
 }
 
 

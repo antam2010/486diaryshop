@@ -18,8 +18,8 @@
 			<h2>Menu</h2>
 			<ul>
 				<li><a href="/">Home</a></li>
-				<li><a href="/src/gallery/list">Gallery</a></li>
-				<li><a href="/src/news/list">News</a></li>
+				<li><a href="/gallery/list">Gallery</a></li>
+				<li><a href="/news/list">News</a></li>
 				<li><a href="generic.php">Consequat dolor</a></li>
 				<li><a href="elements.html">Elements</a></li>
 			</ul>

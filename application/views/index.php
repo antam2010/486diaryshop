@@ -30,7 +30,7 @@
 						<span class="image">
 							<img src="/images/pic01.jpg" alt="" />
 						</span>
-						<a href="/src/gallery/list">
+						<a href="/gallery/list">
 							<h2>사진첩</h2>
 							<div class="content">
 								<p>이대호 밥 먹은 사진 올리기</p>
@@ -41,7 +41,7 @@
 						<span class="image">
 							<img src="/images/pic02.jpg" alt="" />
 						</span>
-						<a href="/src/news/list">
+						<a href="/news/list">
 							<h2>새소식</h2>
 							<div class="content">
 								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Gallery extends CI_Controller
+class News extends CI_Controller
 {
 
     public function __construct()
@@ -11,11 +11,11 @@ class Gallery extends CI_Controller
     }
 
     public function list() {
-        $this->load->view('/src/gallery/list');
+        $this->load->view('/news/list');
     }
 
     public function write() {
-        $this->load->view('/src/gallery/write');
+        $this->load->view('/news/write');
     }
 
 }

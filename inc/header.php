@@ -18,10 +18,10 @@
 			<h2>Menu</h2>
 			<ul>
 				<li><a href="/">Home</a></li>
-				<li><a href="/gallery/list">Gallery</a></li>
-				<li><a href="/news/list">News</a></li>
-				<li><a href="generic.php">Consequat dolor</a></li>
-				<li><a href="elements.html">Elements</a></li>
+				<li><a href="/gallery">Gallery</a></li>
+				<li><a href="/news">News</a></li>
+				<li><a href="/tom">경력기술서</a></li>
+				<!-- <li><a href="elements.html">Elements</a></li> -->
 			</ul>
 		</nav>
 

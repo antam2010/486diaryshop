@@ -10,6 +10,10 @@ class Gallery extends CI_Controller
         $this->load->helper('url');
     }
 
+    public function index() {
+        redirect('/gallery/list');
+    }
+
     public function list() {
         $this->load->view('/gallery/list');
     }

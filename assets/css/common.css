@@ -1,0 +1,23 @@
+.summary {
+    list-style: none;
+    padding-left: 1em;
+  }
+  
+  .summary:before {
+    content: "▶ List";
+    font-size: 1em;
+    color: #000;
+    margin-right: 0.5em;
+    cursor: pointer;
+  }
+  
+  .summary:hover:before {
+    color: #0f0;
+  }
+
+
+/* margin */
+.mb-20 {
+    margin-bottom: 20px;
+}
+  

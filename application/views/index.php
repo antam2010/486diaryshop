@@ -52,8 +52,8 @@
 						<span class="image">
 							<img src="/images/pic03.jpg" alt="" />
 						</span>
-						<a href="generic.php">
-							<h2>달력</h2>
+						<a href="javascript:;">
+							<h2>달력(준비중)</h2>
 							<div class="content">
 								<p>시온이가 만들 것</p>
 							</div>
@@ -63,7 +63,7 @@
 						<span class="image">
 							<img src="/images/pic04.jpg" alt="" />
 						</span>
-						<a href="generic.php">
+						<a href="javascript:;">
 							<h2>준비중</h2>
 							<div class="content">
 								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
@@ -74,7 +74,7 @@
 						<span class="image">
 							<img src="/images/pic05.jpg" alt="" />
 						</span>
-						<a href="generic.php">
+						<a href="javascript:;">
 							<h2>준비중</h2>
 							<div class="content">
 								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
@@ -85,7 +85,7 @@
 						<span class="image">
 							<img src="/images/pic06.jpg" alt="" />
 						</span>
-						<a href="generic.php">
+						<a href="javascript:;">
 							<h2>준비중</h2>
 							<div class="content">
 								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>

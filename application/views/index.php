@@ -19,8 +19,9 @@
 		<div id="main">
 			<div id="app" class="inner">
 				<header>
-					<h1>이대호 ♡ 이시온<br />
-						2021.11.26 ~ {{ nowDate }}
+					<h1>A ♡ B<br />
+						{{ startDate }} ~ {{ endDate }}
+						( {{ dDayDate }} 일 째 )
 					</h1>
 					<!-- <a href="http://html5up.net">HTML5 UP</a> -->
 
@@ -108,16 +109,24 @@
 		el: "#app",
 		data() {
 			return {
-				nowDate : '<?=date('Y-m-d H:i:s')?>'
+				startDate: '2021.06.26',
+				endDate: '',
+				dDayDate : '',
 			}
 		},
 		mounted() {
 			this.getNowDate()
 			setInterval(this.getNowDate.bind(this), 1000)
+			this.getDdayDate()
 		},
 		methods: {
 			getNowDate() {
-				this.nowDate = new Date().YYYYMMDDHHMMSS();
+				this.endDate = new Date().YYYYMMDDHHMMSS();
+			},
+			getDdayDate() {
+				const oneDay = 24 * 60 * 60 * 1000 // 하루를 밀리초로 변환
+				const dDay = Math.round((new Date() - new Date(this.startDate)) / oneDay) // D-day 계산
+				this.dDayDate = `${dDay}`
 			}
 		},
 	});

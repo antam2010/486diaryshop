@@ -55,80 +55,15 @@
                                                         <b>기능</b> : 
                                                         {{ row.project_function }}
                                                     </li>
-                                                </ol>
-                                            </li>
-                                        </ul>
-                                    </details>
-                                </div>
-
-
-                                <!-- <div class="col-6 col-12-medium">
-                                    <h3>PHP</h3>
-                                    <details >
-                                        <summary class="summary mb-20"></summary>
-                                        <ul>
-                                            <li v-for="(row,i) in list.phpList">
-                                                {{ row.project_name }}
-                                                <ol>
                                                     <li>
-                                                        <b>기한</b> : 
-                                                        {{ row.project_date }}
-                                                    </li>
-                                                    <li>
-                                                        <b>인원</b> : 
-                                                        {{ row.project_person }}
-                                                    </li>
-                                                    <li>
-                                                        <b>역할</b> : 
-                                                        {{ row.project_part }}
-                                                    </li>
-                                                    <li>
-                                                        <b>개발환경</b> : 
-                                                        {{ row.project_setting }}
-                                                    </li>
-                                                    <li>
-                                                        <b>기능</b> : 
-                                                        {{ row.project_function }}
+                                                        <b>URL</b> : 
+                                                        <span v-html="row.project_url"></span>
                                                     </li>
                                                 </ol>
                                             </li>
                                         </ul>
                                     </details>
                                 </div>
-
-                                <div class="col-6 col-12-medium">
-                                    <h3>JAVA</h3>
-                                    <details >
-                                        <summary class="summary mb-20"></summary>
-                                        <ul>
-                                            <li v-for="(row,i) in list.javaList">
-                                                {{ row.project_name }}
-                                                <ol>
-                                                    <li>
-                                                        <b>기한</b> : 
-                                                        {{ row.project_date }}
-                                                    </li>
-                                                    <li>
-                                                        <b>인원</b> : 
-                                                        {{ row.project_person }}
-                                                    </li>
-                                                    <li>
-                                                        <b>역할</b> : 
-                                                        {{ row.project_part }}
-                                                    </li>
-                                                    <li>
-                                                        <b>개발환경</b> : 
-                                                        {{ row.project_setting }}
-                                                    </li>
-                                                    <li>
-                                                        <b>기능</b> : 
-                                                        {{ row.project_function }}
-                                                    </li>
-                                                </ol>
-                                            </li>
-                                        </ul>
-                                    </details>
-                                </div> -->
 
                             </div>
                         </section>

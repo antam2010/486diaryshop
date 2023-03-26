@@ -10,7 +10,7 @@ class Project extends CI_Controller
 
         $this->load->model('api/Project_m', 'project_m');
         $this->load->library('linput');
-        $this->load->helper('text');
+        $this->load->helper('url');
     }
     /**
      * 게시판 리스트
@@ -33,6 +33,7 @@ class Project extends CI_Controller
             $me = $list['list'][$i];
 
             $me['num'] = $list['total'] - ((($page - 1) * $pageSize) + $i);
+            $me['project_url'] = auto_link($row['project_url'], 'url', true);
             $list['list'][$i] = $me;
         }
 

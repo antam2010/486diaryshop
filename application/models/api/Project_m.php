@@ -33,7 +33,8 @@ class Project_m extends CI_Model {
             p.project_function,
             p.project_setting,
             p.project_backend,
-            p.project_frontend
+            p.project_frontend,
+            p.project_url
         FROM
             dh_project AS p
                 JOIN

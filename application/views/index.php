@@ -35,7 +35,7 @@
 							<h2>사진첩</h2>
 							<div class="content">
 								<p>이대호 밥 먹은 사진 올리기</p>
-							</div>
+							</div> 
 						</a>
 					</article>
 					<article class="style2">

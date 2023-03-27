@@ -41,7 +41,7 @@ class Project_m extends CI_Model {
             dh_member AS m ON p.member_idx = m.member_idx
         WHERE 1 
         ${where}
-        ORDER BY p.project_sdate ASC, p.project_idx ASC";
+        ORDER BY p.project_sdate DESC, p.project_idx DESC";
         $list = $this->db->query($sql, $bind)->result_array();
 
         $sql = "SELECT FOUND_ROWS() as cnt";

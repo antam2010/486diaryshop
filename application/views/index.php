@@ -45,7 +45,7 @@
 						<a href="/news/list">
 							<h2>새소식</h2>
 							<div class="content">
-								<p>Sed n isl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
 							</div>
 						</a>
 					</article>

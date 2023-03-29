@@ -19,9 +19,10 @@
 		<div id="main">
 			<div id="app" class="inner">
 				<header>
-					<h1>A ♡ B<br />
-						{{ startDate }} ~ {{ endDate }}
-						( {{ dDayDate }} 일 째 )
+					<h1>
+						<p>A ♡ B</p>
+						<p>{{ startDate }} ~ {{ endDate }}</p>
+						<p>( {{ dDayDate }} 일 째 )</p>
 					</h1>
 					<!-- <a href="http://html5up.net">HTML5 UP</a> -->
 

@@ -28,7 +28,7 @@ class Board extends CI_Controller
         $indata = [];
         $indata['board_category'] = $this->input->get('board_category', true);
 
-        $list = $this->board_m->get_list($indata);
+        $list = $this->board_m->get_list($page, $pageSize, $indata);
 
         foreach ($list['list'] as $i => $row) {
             $me = $list['list'][$i];

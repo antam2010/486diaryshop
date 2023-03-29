@@ -1,20 +1,36 @@
-.summary {
+.summary-open {
     list-style: none;
     padding-left: 1em;
   }
   
-  .summary:before {
-    content: "▶ List";
+  .summary-open:before {
+    content: "펼치기 - ";
     font-size: 1em;
-    color: #000;
+    color: skyblue;
     margin-right: 0.5em;
     cursor: pointer;
   }
   
-  .summary:hover:before {
-    color: #0f0;
+  .summary-open:hover:before {
+    color: blue;
   }
 
+.summary-close {
+  list-style: none;
+  padding-left: 1em;
+}
+  
+  .summary-close:before {
+    content: "접기 - ";
+    font-size: 1em;
+    color: skyblue;
+    margin-right: 0.5em;
+    cursor: pointer;
+  }
+  
+  .summary-close:hover:before {
+    color: blue;
+  }
 
 /* margin */
 .mb-20 {

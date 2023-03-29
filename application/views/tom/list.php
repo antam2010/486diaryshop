@@ -26,12 +26,36 @@
                         <section>
                             <div class="row">
 
-
                                 <div class="col-6 col-12-medium" v-for="(category, name) in list">
                                     <h3>{{ name }}</h3>
-                                    <details >
-                                        <summary class="summary mb-20">{{ category.length }}</summary>
-                                        <ul>
+                                        <ul ref="ul">
+                                            <li v-if="!isSummaryOpen">
+                                                <b>기한</b> : 
+                                                {{ category[0]?.project_date }}
+                                            </li>
+                                            <li v-if="!isSummaryOpen">
+                                                <b>인원</b> : 
+                                                {{ category[0]?.project_person }}
+                                            </li>
+                                            <li v-if="!isSummaryOpen">
+                                                <b>역할</b> : 
+                                                {{ category[0]?.project_part }}
+                                            </li>
+                                            <li v-if="!isSummaryOpen">
+                                                <b>개발환경</b> : 
+                                                {{ category[0]?.project_setting }}
+                                            </li>
+                                            <li v-if="!isSummaryOpen">
+                                                <b>기능</b> : 
+                                                {{ category[0]?.project_function }}
+                                            </li>
+                                            <li v-if="!isSummaryOpen">
+                                                <b>URL</b> : 
+                                                <span v-html="category[0]?.project_url"></span>
+                                            </li>
+                                     
+                                    <details @click="onSummary">
+                                        <summary :class="{'summary-open': isSummaryOpen, 'summary-close': !isSummaryOpen}" class="mb-20">{{ category.length }}</summary>
                                             <li v-for="(row, i) in category">
                                                 {{ row.project_name }}
                                                 <ol>
@@ -90,6 +114,7 @@
                     VUE: [],
                 },
                 total: 0,
+                isSummaryOpen: false,
             }
         },
         mounted() {
@@ -121,8 +146,11 @@
                    
                     me.total = response.data.total
                 });
+            },
+            onSummary(event) {
+                this.isSummaryOpen = !event.target.parentElement.open
             }
-
-        },
+        }
+        
     });
 </script>

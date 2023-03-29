@@ -10,13 +10,17 @@ class Board_m extends CI_Model {
     /**
      * 게시판리스트
      *
+     * @param integer $page
+     * @param integer $pageSize
      * @param array $indata
      * @return array
-     */    
-    public function get_list(array $indata = [] )
+     */
+    public function get_list(int $page, int $pageSize, array $indata = [] )
     {
-        $where = "";
         $bind = [];
+        $where = "";
+        $limit = " LIMIT " . ($page-1) * $pageSize;
+    
 
         if( isset($indata['board_category']) ) {
             $where .= " AND b.board_category = ?";
@@ -37,7 +41,9 @@ class Board_m extends CI_Model {
             dh_member AS m ON b.member_idx = m.member_idx
         WHERE 1 
         ${where}
-        ORDER BY b.board_wdate DESC";
+        ORDER BY b.board_wdate DESC
+        ${limit}
+        ";
         $list = $this->db->query($sql, $bind)->result_array();
 
         $sql = "SELECT FOUND_ROWS() as cnt";

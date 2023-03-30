@@ -19,7 +19,7 @@ class Board_m extends CI_Model {
     {
         $bind = [];
         $where = "";
-        $limit = " LIMIT " . ($page-1) * $pageSize;
+        $limit = " LIMIT " . ($page-1) * $pageSize . ", " . $pageSize;
     
 
         if( isset($indata['board_category']) ) {

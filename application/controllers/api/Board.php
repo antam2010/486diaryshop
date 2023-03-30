@@ -11,6 +11,8 @@ class Board extends CI_Controller
         $this->load->model('api/Board_m', 'board_m');
         $this->load->library('linput');
         $this->load->helper('text');
+        
+        $this->pageSize = 10;
     }
     /**
      * 게시판 리스트
@@ -20,22 +22,20 @@ class Board extends CI_Controller
         $res = [];
 
         $page = round($this->input->get('page', true));
-        $page == 0 ? 1: $page;
+        $page = $page == 0 ? 1 : $page;
 
-        $pageSize = round($this->input->get('page_size', true));
-        $pageSize == 0 ? 5: $pageSize;
+        $pageSize = round($this->input->get('pageSize', true));
+        $pageSize = $pageSize == 0 ? $this->pageSize : $pageSize;
 
-        $indata = [];
-        $indata['board_category'] = $this->input->get('board_category', true);
+        $indata = [
+            'board_category' => $this->input->get('board_category', true)
+        ];
 
         $list = $this->board_m->get_list($page, $pageSize, $indata);
 
-        foreach ($list['list'] as $i => $row) {
-            $me = $list['list'][$i];
-
-            $me['num'] = $list['total'] - ((($page - 1) * $pageSize) + $i);
-            $me['board_contents'] = character_limiter($row['board_contents'], 2);
-            $list['list'][$i] = $me;
+        foreach ($list['list'] as $i => &$row) {
+            $row['num'] = $list['total'] - ((($page - 1) * $pageSize) + $i);
+            $row['board_contents'] = character_limiter($row['board_contents'], 2);
         }
 
         $res['list'] = $list['list'];

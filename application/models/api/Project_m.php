@@ -13,7 +13,7 @@ class Project_m extends CI_Model {
      * @param array $indata
      * @return array
      */    
-    public function get_list(array $indata = [] )
+    public function get_list(array $indata = [])
     {
         $where = "";
         $bind = [];
@@ -34,14 +34,15 @@ class Project_m extends CI_Model {
             p.project_setting,
             p.project_backend,
             p.project_frontend,
-            p.project_url
+            p.project_url,
+            p.project_notice
         FROM
             dh_project AS p
                 JOIN
             dh_member AS m ON p.member_idx = m.member_idx
         WHERE 1 
-        ${where}
-        ORDER BY p.project_sdate DESC, p.project_idx DESC";
+        ".$where."
+        ORDER BY p.project_notice DESC, p.project_sdate DESC, p.project_idx DESC";
         $list = $this->db->query($sql, $bind)->result_array();
 
         $sql = "SELECT FOUND_ROWS() as cnt";

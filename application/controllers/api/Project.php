@@ -25,16 +25,16 @@ class Project extends CI_Controller
         $pageSize = round($this->input->get('page_size', true));
         $pageSize == 0 ? 5: $pageSize;
 
-        $indata = [];
+        $indata = [
+            'page' => $page,
+            'pageSize' => $pageSize
+        ];
 
         $list = $this->project_m->get_list($indata);
 
-        foreach ($list['list'] as $i => $row) {
-            $me = $list['list'][$i];
-
-            $me['num'] = $list['total'] - ((($page - 1) * $pageSize) + $i);
-            $me['project_url'] = auto_link($row['project_url'], 'url', true);
-            $list['list'][$i] = $me;
+        foreach ($list['list'] as $i=> &$row) {
+            $row['num'] = $list['total'] - ((($page - 1) * $pageSize) + $i);
+            $row['project_url'] = auto_link($row['project_url'], 'url', true);
         }
 
         $res['list'] = $list['list'];

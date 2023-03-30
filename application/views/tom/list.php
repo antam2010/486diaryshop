@@ -28,64 +28,71 @@
 
                                 <div class="col-6 col-12-medium" v-for="(category, name, index) in list" :key="index">
                                     <h3>{{ name }}</h3>
-                                        <ul ref="ul">
-                                            <li v-if="!isSummaryOpen[index]">
-                                                <b>기한</b> : 
-                                                {{ category[0]?.project_date }}
-                                            </li>
-                                            <li v-if="!isSummaryOpen[index]">
-                                                <b>인원</b> : 
-                                                {{ category[0]?.project_person }}
-                                            </li>
-                                            <li v-if="!isSummaryOpen[index]">
-                                                <b>역할</b> : 
-                                                {{ category[0]?.project_part }}
-                                            </li>
-                                            <li v-if="!isSummaryOpen[index]">
-                                                <b>개발환경</b> : 
-                                                {{ category[0]?.project_setting }}
-                                            </li>
-                                            <li v-if="!isSummaryOpen[index]">
-                                                <b>기능</b> : 
-                                                {{ category[0]?.project_function }}
-                                            </li>
-                                            <li v-if="!isSummaryOpen[index]">
-                                                <b>URL</b> : 
-                                                <span v-html="category[0]?.project_url"></span>
-                                            </li>
-                                     
-                                    <details @toggle="(event) => onSummary(event, index)">
-                                        <summary :class="{'summary-open': !isSummaryOpen[index], 'summary-close': isSummaryOpen[index]}" class="mb-20">{{ category.length }}</summary>
-                                            <li v-for="(row, i) in category">
+                                    <ul>
+                                        <li>
+                                            {{ category[0]?.project_name }}
+                                            <ol>
+                                                <li>
+                                                    <b>기한</b> :
+                                                    {{ category[0]?.project_date }}
+                                                </li>
+                                                <li>
+                                                    <b>인원</b> :
+                                                    {{ category[0]?.project_person }}
+                                                </li>
+                                                <li>
+                                                    <b>역할</b> :
+                                                    {{ category[0]?.project_part }}
+                                                </li>
+                                                <li>
+                                                    <b>개발환경</b> :
+                                                    {{ category[0]?.project_setting }}
+                                                </li>
+                                                <li>
+                                                    <b>기능</b> :
+                                                    {{ category[0]?.project_function }}
+                                                </li>
+                                                <li>
+                                                    <b>URL</b> :
+                                                    <span v-html="category[0]?.project_url"></span>
+                                                </li>
+                                            </ol>
+                                        </li>
+
+                                        <details @toggle="(event) => onSummary(event, index)">
+                                            <summary
+                                                :class="{'summary-open': !isSummaryOpen[index], 'summary-close': isSummaryOpen[index]}"
+                                                class="mb-20">총 {{ category.length }}개</summary>
+                                            <li v-for="(row, i) in category" v-if="i>0">
                                                 {{ row.project_name }}
                                                 <ol>
                                                     <li>
-                                                        <b>기한</b> : 
+                                                        <b>기한</b> :
                                                         {{ row.project_date }}
                                                     </li>
                                                     <li>
-                                                        <b>인원</b> : 
+                                                        <b>인원</b> :
                                                         {{ row.project_person }}
                                                     </li>
                                                     <li>
-                                                        <b>역할</b> : 
+                                                        <b>역할</b> :
                                                         {{ row.project_part }}
                                                     </li>
                                                     <li>
-                                                        <b>개발환경</b> : 
+                                                        <b>개발환경</b> :
                                                         {{ row.project_setting }}
                                                     </li>
                                                     <li>
-                                                        <b>기능</b> : 
+                                                        <b>기능</b> :
                                                         {{ row.project_function }}
                                                     </li>
                                                     <li>
-                                                        <b>URL</b> : 
+                                                        <b>URL</b> :
                                                         <span v-html="row.project_url"></span>
                                                     </li>
                                                 </ol>
                                             </li>
-                                        </ul>
+                                    </ul>
                                     </details>
                                 </div>
 
@@ -109,7 +116,7 @@
         data() {
             return {
                 list: {
-                    PHP: [],    
+                    PHP: [],
                     JAVA: [],
                     VUE: [],
                 },
@@ -129,7 +136,7 @@
                 }
                 axios.get('/project/list', { params: info }).then(response => {
 
-                    for(let row of response.data.list) {
+                    for (let [i, row] of response.data.list.entries()) {
                         switch (row.project_backend) {
                             case "PHP":
                                 me.list.PHP.push(row)
@@ -144,16 +151,16 @@
                                 break;
                         }
                     }
-                   
+
                     me.total = response.data.total
                 });
             },
             onSummary(event, index) {
-                this.isSummaryOpen = this.isSummaryOpen.map((item,i) => {
-                    return  i === index ? event.target.open : item
+                this.isSummaryOpen = this.isSummaryOpen.map((item, i) => {
+                    return i === index ? event.target.open : item
                 });
             }
         }
-        
+
     });
 </script>

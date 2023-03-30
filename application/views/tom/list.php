@@ -26,36 +26,36 @@
                         <section>
                             <div class="row">
 
-                                <div class="col-6 col-12-medium" v-for="(category, name) in list">
+                                <div class="col-6 col-12-medium" v-for="(category, name, index) in list" :key="index">
                                     <h3>{{ name }}</h3>
                                         <ul ref="ul">
-                                            <li v-if="!isSummaryOpen">
+                                            <li v-if="!isSummaryOpen[index]">
                                                 <b>기한</b> : 
                                                 {{ category[0]?.project_date }}
                                             </li>
-                                            <li v-if="!isSummaryOpen">
+                                            <li v-if="!isSummaryOpen[index]">
                                                 <b>인원</b> : 
                                                 {{ category[0]?.project_person }}
                                             </li>
-                                            <li v-if="!isSummaryOpen">
+                                            <li v-if="!isSummaryOpen[index]">
                                                 <b>역할</b> : 
                                                 {{ category[0]?.project_part }}
                                             </li>
-                                            <li v-if="!isSummaryOpen">
+                                            <li v-if="!isSummaryOpen[index]">
                                                 <b>개발환경</b> : 
                                                 {{ category[0]?.project_setting }}
                                             </li>
-                                            <li v-if="!isSummaryOpen">
+                                            <li v-if="!isSummaryOpen[index]">
                                                 <b>기능</b> : 
                                                 {{ category[0]?.project_function }}
                                             </li>
-                                            <li v-if="!isSummaryOpen">
+                                            <li v-if="!isSummaryOpen[index]">
                                                 <b>URL</b> : 
                                                 <span v-html="category[0]?.project_url"></span>
                                             </li>
                                      
-                                    <details @click="onSummary">
-                                        <summary :class="{'summary-open': isSummaryOpen, 'summary-close': !isSummaryOpen}" class="mb-20">{{ category.length }}</summary>
+                                    <details @toggle="(event) => onSummary(event, index)">
+                                        <summary :class="{'summary-open': !isSummaryOpen[index], 'summary-close': isSummaryOpen[index]}" class="mb-20">{{ category.length }}</summary>
                                             <li v-for="(row, i) in category">
                                                 {{ row.project_name }}
                                                 <ol>
@@ -114,10 +114,11 @@
                     VUE: [],
                 },
                 total: 0,
-                isSummaryOpen: false,
+                isSummaryOpen: [],
             }
         },
         mounted() {
+            this.isSummaryOpen = new Array(Object.keys(this.list).length).fill(false);
             this.doSearch();
         },
         methods: {
@@ -147,8 +148,10 @@
                     me.total = response.data.total
                 });
             },
-            onSummary(event) {
-                this.isSummaryOpen = !event.target.parentElement.open
+            onSummary(event, index) {
+                this.isSummaryOpen = this.isSummaryOpen.map((item,i) => {
+                    return  i === index ? event.target.open : item
+                });
             }
         }
         

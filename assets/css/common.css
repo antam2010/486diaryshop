@@ -23,13 +23,13 @@
   .summary-close:before {
     content: "접기 - ";
     font-size: 1em;
-    color: skyblue;
+    color: blue;
     margin-right: 0.5em;
     cursor: pointer;
   }
   
   .summary-close:hover:before {
-    color: blue;
+    color: skyblue;
   }
 
 /* margin */

@@ -13,7 +13,7 @@ class Project_m extends CI_Model {
      * @param array $indata
      * @return array
      */    
-    public function get_list(array $indata = [])
+    public function getList(array $indata = [])
     {
         $where = "";
         $bind = [];
@@ -25,6 +25,7 @@ class Project_m extends CI_Model {
 
         $sql = "
         SELECT SQL_CALC_FOUND_ROWS
+            p.project_idx,
             p.project_company,
             p.project_name,
             CONCAT(LEFT(p.project_sdate, 7), ' ~ ', LEFT(p.project_edate, 7)) AS project_date,
@@ -52,6 +53,21 @@ class Project_m extends CI_Model {
             'list' => $list,
             'total' => $total
         ];
+        return $result;
+    }
+    /**
+     * 프로젝트 파일 리스트
+     *
+     * @param integer $project_idx
+     * @return array
+     */
+    public function getFileList(int $project_idx) {
+
+        $where = [ 'project_idx' => $project_idx ];
+        $result = $this->db
+                ->select('file_name, file_path')
+                ->get_where('dh_project_file', $where)
+                ->result_array();
         return $result;
     }
 

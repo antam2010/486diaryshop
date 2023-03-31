@@ -53,6 +53,12 @@
                                                     {{ category[0]?.project_function }}
                                                 </li>
                                                 <li>
+                                                    <b>파일</b> :
+                                                    <div class="mr-05 ml-20" v-for="file in category[0]?.files">
+                                                        <a :href="file.file_path" target="_blanck">- {{ file.file_name }}</a>
+                                                    </div>
+                                                </li>
+                                                <li>
                                                     <b>URL</b> :
                                                     <span v-html="category[0]?.project_url"></span>
                                                 </li>

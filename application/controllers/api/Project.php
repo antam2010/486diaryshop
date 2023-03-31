@@ -30,13 +30,16 @@ class Project extends CI_Controller
             'pageSize' => $pageSize
         ];
 
-        $list = $this->project_m->get_list($indata);
+        $list = $this->project_m->getList($indata);
+
 
         foreach ($list['list'] as $i=> &$row) {
             $row['num'] = $list['total'] - ((($page - 1) * $pageSize) + $i);
             $row['project_url'] = auto_link($row['project_url'], 'url', true);
+            
+            $row['files'] = $this->project_m->getFileList($row["project_idx"]);
         }
-
+        
         $res['list'] = $list['list'];
         $res['total'] = $list['total'];
         $res['err'] = 0;

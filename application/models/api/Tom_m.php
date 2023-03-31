@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Project_m extends CI_Model {
+class Tom_m extends CI_Model {
 
     public function __construct()
     {
@@ -13,7 +13,7 @@ class Project_m extends CI_Model {
      * @param array $indata
      * @return array
      */    
-    public function getList(array $indata = [])
+    public function getProjectList(array $indata = [])
     {
         $where = "";
         $bind = [];

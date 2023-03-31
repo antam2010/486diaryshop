@@ -140,7 +140,7 @@
                 let info = {
                     'pageSize': 999
                 }
-                axios.get('/project/list', { params: info }).then(response => {
+                axios.get('/tom/projectList', { params: info }).then(response => {
 
                     for (let [i, row] of response.data.list.entries()) {
                         switch (row.project_backend) {

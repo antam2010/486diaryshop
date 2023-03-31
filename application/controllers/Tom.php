@@ -14,10 +14,13 @@ class Tom extends CI_Controller
     }
 
     public function index() {
-        redirect('/tom/list');
+        redirect('/tom/projectList');
     }
-    public function list() {
-        $this->load->view('/tom/list');
+    public function projectList() {
+        $this->load->view('/tom/projectList');
+    }
+    public function resumeList() {
+        $this->load->view('/tom/resumeList');
     }
 
    

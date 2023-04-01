@@ -19,8 +19,8 @@ class Tom extends CI_Controller
     public function projectList() {
         $this->load->view('/tom/projectList');
     }
-    public function resumeList() {
-        $this->load->view('/tom/resumeList');
+    public function personalList() {
+        $this->load->view('/tom/personalList');
     }
 
    

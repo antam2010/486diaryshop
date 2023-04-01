@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 /**
- * 내 경력기술서나 이력서 등
+ * 내 경력기술서나 자기소개서 등
  */
 class Tom extends CI_Controller
 {
@@ -45,6 +45,16 @@ class Tom extends CI_Controller
         $res['list'] = $list['list'];
         $res['total'] = $list['total'];
         $res['err'] = 0;
+        echo json_encode($res);
+    }
+
+    public function personalList() {
+
+        $res = [];
+
+        $res = $this->tom_m->getPersonalList();
+        $res['err'] = 0;
+
         echo json_encode($res);
     }
 

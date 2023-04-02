@@ -6,14 +6,17 @@ class Tom_m extends CI_Model {
     public function __construct()
     {
         parent::__construct();
+        $this->load->helper('url');
     }
     /**
      * 경력증명서 리스트
      *
+     * @param integer $page
+     * @param integer $pageSize
      * @param array $indata
      * @return array
-     */    
-    public function getProjectList(array $indata = []) : array 
+     */
+    public function getProjectList(int $page, int $pageSize, array $indata = []) : array 
     {
         $where = "";
         $bind = [];
@@ -44,15 +47,20 @@ class Tom_m extends CI_Model {
         WHERE 1 
         ".$where."
         ORDER BY p.project_notice DESC, p.project_sdate DESC, p.project_idx DESC";
+
         $list = $this->db->query($sql, $bind)->result_array();
 
         $sql = "SELECT FOUND_ROWS() as cnt";
         $total = $this->db->query($sql)->row()->cnt;
 
-        $result = [
-            'list' => $list,
-            'total' => $total
-        ];
+        foreach ($list as $i => &$row) {
+            
+            $row['num'] = $total - ((($page - 1) * $pageSize) + $i);
+            $row['project_url'] = auto_link($row['project_url'], 'url', true);
+            $row['files'] = $this->getFileList($row["project_idx"]);
+        }
+
+        $result = [ 'list' => $list, 'total' => $total, 'err' => 0 ];
         return $result;
     }
     /**
@@ -61,7 +69,7 @@ class Tom_m extends CI_Model {
      * @param integer $project_idx
      * @return array
      */
-    public function getFileList(int $project_idx) : array 
+    private function getFileList(int $project_idx) : array 
     {
 
         $where = [ 'project_idx' => $project_idx ];
@@ -88,7 +96,6 @@ class Tom_m extends CI_Model {
 
         foreach ($query->result() as $row) {
             $projectSetting = strtolower($row->project_setting);
-
             $progresslist = $this->countProjectSettings($projectSetting, $projectSettings, $progresslist);
             $progressCntList = $this->countProjectSettings($projectSetting, $projectSettings, $progresslist);
         }
@@ -98,7 +105,8 @@ class Tom_m extends CI_Model {
         $result = [
             'progressList' => $progresslist,
             'progressCntList' => $progressCntList,
-            'total' => $total
+            'total' => $total,
+            'err' => 0
         ];
         
         return $result;

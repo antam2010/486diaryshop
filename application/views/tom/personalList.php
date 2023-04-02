@@ -106,6 +106,11 @@
                 let me = this;
                 
                 await axios.get('/tom/personalList', { params: [] }).then(response => {
+                    
+                    if( response.data.err > 0) {
+                        return alert(response.data.err_msg)
+                    }
+
                     me.progressList = response.data.progressList
                     me.progressCntList = response.data.progressCntList
                     me.total = response.data.total

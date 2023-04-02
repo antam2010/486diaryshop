@@ -5,6 +5,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class Tom extends CI_Controller
 {
+    public $pageSize = 10;
+    public $err_msg = "";
 
     public function __construct()
     {
@@ -19,41 +21,19 @@ class Tom extends CI_Controller
      */
     public function projectList()
     {
-        $res = [];
+        $indata = [];
+        $page = round($this->input->get('page', true)) ?? 0;
+        $pageSize = round($this->input->get('page_size', true)) ?? $this->pageSize;
 
-        $page = round($this->input->get('page', true));
-        $page == 0 ? 1: $page;
-
-        $pageSize = round($this->input->get('page_size', true));
-        $pageSize == 0 ? 5: $pageSize;
-
-        $indata = [
-            'page' => $page,
-            'pageSize' => $pageSize
-        ];
-
-        $list = $this->tom_m->getProjectList($indata);
-
-
-        foreach ($list['list'] as $i=> &$row) {
-            $row['num'] = $list['total'] - ((($page - 1) * $pageSize) + $i);
-            $row['project_url'] = auto_link($row['project_url'], 'url', true);
-            
-            $row['files'] = $this->tom_m->getFileList($row["project_idx"]);
-        }
+        $res = $this->tom_m->getProjectList($page, $pageSize, $indata);     
         
-        $res['list'] = $list['list'];
-        $res['total'] = $list['total'];
-        $res['err'] = 0;
         echo json_encode($res);
     }
 
-    public function personalList() {
-
-        $res = [];
+    public function personalList() 
+    {
 
         $res = $this->tom_m->getPersonalList();
-        $res['err'] = 0;
 
         echo json_encode($res);
     }

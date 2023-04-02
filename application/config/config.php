@@ -520,3 +520,5 @@ $config['board_category'] = [
     'notice' => '공지사항',
     'news'  => '새소식',
 ];
+
+$config['err_msg'] = '에러가 발생했습니다. 관리자에게 문의해주세요';

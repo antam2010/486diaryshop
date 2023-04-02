@@ -39,9 +39,20 @@
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/vue.js"></script>
 <script src="/assets/js/common.js"></script>
+<script src="/assets/js/class/channeltalk.js"></script>
 <script>
     // axios.defaults.baseURL = 'http://api.486diary.shop'
     axios.defaults.baseURL = '/api'
+
+    const CT_UID = ""
+      const CT_KNAME = ""
+      const CT_SETTING = {
+            isButtonHide : false
+      }
+
+      const channelTalk = new ChannelTalk(CT_UID, CT_KNAME, CT_SETTING)
+      channelTalk.init();
+
 </script>
 
 

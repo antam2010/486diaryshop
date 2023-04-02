@@ -36,7 +36,7 @@
                         <section>
                             <h3>숙련도 (프로젝트 백분율)</h3>
                             <ul> 
-                                <li v-for="(row, key) in progresslist" >
+                                <li v-for="(row, key) in progressList" >
                                     {{ key }}
                                     <progress :value="row" max="100"></progress> 
                                     <span>{{ row }} %</span>
@@ -47,7 +47,31 @@
                             <h3>개발경험</h3>
                             <article>
                                 <ul>
-                                    <li>GitLab Runner를 활용한 CI/CD 자동 배포 구축 경험이 있습니다.</li>
+                                    <li>
+                                        GitLab Runner를 활용한 CI/CD 자동 배포 구축 경험이 있습니다.
+                                    </li>
+                                    <li>
+                                        PHP를 활용한 {{ total }} 개 프로젝트중 {{ progressCntList.php }}
+                                        개 만큼의 크고 작은 경험이 있습니다.</li>
+                                    <li>
+                                        Spring boot를 활용한 {{ progressCntList.java }} 개의 프로젝트 개발 경험과
+                                        유지보수 경험이 있습니다.
+                                    </li>
+                                    <li>
+                                        jquery 를 활용하여 {{ progressCntList.jquery }} 개 프로젝트 경험과
+                                        Vue.js 를 활용한 {{ progressCntList.vue }} 개의 프로젝트 경험이 있습니다.
+                                    </li>
+                                    <li>
+                                        리눅스 CentOs 와 Ubuntu 에서 Apache, Nginx 를 통해 웹 홈페이지 구동 경험과
+                                        SSL 인증서 작업 경험이 있습니다.
+                                    </li>
+                                    <li>
+                                        Mysql 과 MariaDB 를 활용하여 DB 설계와 쿼리를 주로 사용하였고, 
+                                        유지보수로 OracleDB 도 사용한 경험이 있습니다.
+                                    </li>
+                                    <li>
+                                        현재 재직중인 회사에 약 40개 정도의 프로젝트를 유지보수 하고 있습니다.
+                                    </li>
                                 </ul>
                             </article>
                         </section>
@@ -68,18 +92,23 @@
         el: "#app",
         data() {
             return {
-                progresslist: []
+                progressList: [],
+                progressCntList : [],
+                total : 0,
             }
         },
         mounted() {
-            this.doSearch();
+            this.doSearch()
+            
         },
         methods: {
-            doSearch() {
+            async doSearch() {
                 let me = this;
                 
-                axios.get('/tom/personalList', { params: [] }).then(response => {
-                    me.progresslist = response.data.progresslist
+                await axios.get('/tom/personalList', { params: [] }).then(response => {
+                    me.progressList = response.data.progressList
+                    me.progressCntList = response.data.progressCntList
+                    me.total = response.data.total
                 });
             },
         }
@@ -129,6 +158,25 @@
       width: 0%;
     }
   }
+
+  .progress-tooltip {
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.progress-container:hover .progress-tooltip {
+  opacity: 1;
+}
 
   li span {
     float: right;

@@ -13,7 +13,7 @@ class Tom_m extends CI_Model {
      * @param array $indata
      * @return array
      */    
-    public function getProjectList(array $indata = [])
+    public function getProjectList(array $indata = []) : array 
     {
         $where = "";
         $bind = [];
@@ -61,7 +61,8 @@ class Tom_m extends CI_Model {
      * @param integer $project_idx
      * @return array
      */
-    public function getFileList(int $project_idx) {
+    public function getFileList(int $project_idx) : array 
+    {
 
         $where = [ 'project_idx' => $project_idx ];
         $result = $this->db
@@ -71,9 +72,12 @@ class Tom_m extends CI_Model {
         return $result;
     }
     /**
- * 자기소개서 프로젝트 기술서 그룹 리스트
- */
-    public function getPersonalList() {
+     * 자기소개서 프로젝트 통계리스트
+     *
+     * @return array
+     */
+    public function getPersonalList() :array 
+    {
 
         $projectSettings = ['php', 'java', 'vue', 'javascript', 'jquery'];
         $progresslist = array_fill_keys($projectSettings, 0);
@@ -84,25 +88,34 @@ class Tom_m extends CI_Model {
 
         foreach ($query->result() as $row) {
             $projectSetting = strtolower($row->project_setting);
+
             $progresslist = $this->countProjectSettings($projectSetting, $projectSettings, $progresslist);
+            $progressCntList = $this->countProjectSettings($projectSetting, $projectSettings, $progresslist);
         }
 
         $progresslist = $this->calculatePercentages($progresslist, $total);
 
         $result = [
-            'progresslist' => $progresslist
+            'progressList' => $progresslist,
+            'progressCntList' => $progressCntList,
+            'total' => $total
         ];
         
         return $result;
     }
 
     /**
-     * 프로젝트 설정 개수 세기
+     * 각각 프로젝트마다 어떤 언어를 썻는지 구함
+     *
+     * @param string $projectSetting : 프로젝트 셋팅 내용
+     * @param string $projectSettings : 프로젝트 셋팅 분류
+     * @param array $result : 담길 값
+     * @return array
      */
-    private function countProjectSettings($projectSetting, $projectSettings, $result) {
+    private function countProjectSettings(string $projectSetting, array $projectSettings, array $result): array {
         foreach ($projectSettings as $part) {
             if ($part === 'java') {
-                // Count only if 'java' is found and 'javascript' is not found
+                // 'java'를 찾되, 'javascript'가 아닌 경우만 찾기 위해 정규표현식 사용
                 if (strpos($projectSetting, $part) !== false && strpos($projectSetting, 'javascript') === false) {
                     $result[$part]++;
                 }
@@ -118,12 +131,16 @@ class Tom_m extends CI_Model {
 
     /**
      * 백분율
+     *
+     * @param array $result
+     * @param integer $total
+     * @return array
      */
-    private function calculatePercentages($result, $total) {
+    private function calculatePercentages(array $result, int $total) : array 
+    {
         foreach ($result as $key => $value) {
             $result[$key] = round(($value / $total) * 100);
         }
-
         return $result;
     }
 

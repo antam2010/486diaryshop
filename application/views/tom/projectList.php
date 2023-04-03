@@ -23,6 +23,7 @@
                 <div id="main">
                     <div class="inner">
                         <h1>경력기술서</h1>
+                        <h2>총 {{ total }} 개</h2>
                         <section>
                             <div class="row">
 
@@ -54,9 +55,9 @@
                                                 </li>
                                                 <li>
                                                     <b>파일</b> :
-                                                    <div class="mr-05 ml-20" v-for="file in category[0]?.files">
+                                                    <span class="mr-05 ml-20" v-for="file in category[0]?.files">
                                                         <a :href="file.file_path" target="_blanck">- {{ file.file_name }}</a>
-                                                    </div>
+                                                    </span>
                                                 </li>
                                                 <li>
                                                     <b>URL</b> :
@@ -93,6 +94,12 @@
                                                         {{ row.project_function }}
                                                     </li>
                                                     <li>
+                                                        <b>파일</b> :
+                                                        <span class="mr-05 ml-20" v-for="file in row.files">
+                                                            <a :href="file.file_path" target="_blanck">- {{ file.file_name }}</a>
+                                                        </span>
+                                                     </li>
+                                                    <li>
                                                         <b>URL</b> :
                                                         <span v-html="row.project_url"></span>
                                                     </li>
@@ -125,6 +132,7 @@
                     PHP: [],
                     JAVA: [],
                     VUE: [],
+                    jQuery : [],
                 },
                 total: 0,
                 isSummaryOpen: [],
@@ -154,6 +162,9 @@
                         switch (row.project_frontend) {
                             case "VUE":
                                 me.list.VUE.push(row)
+                                break;
+                            case "JQUERY":
+                                me.list.jQuery.push(row)
                                 break;
                         }
                     }

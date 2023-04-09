@@ -23,6 +23,7 @@
                 <!-- <li><a href="/signature">전자결재</a></li> -->
 				<li><a href="/tom/projectList">경력기술서</a></li>
                 <li><a href="/tom/personalList">자기소개서</a></li>
+                <li><a href="/tom/personalList">PC 이력서</a></li>
 				<!-- <li><a href="elements.html">Elements</a></li> -->
 			</ul>
 		</nav>

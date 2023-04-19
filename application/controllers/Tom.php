@@ -22,6 +22,9 @@ class Tom extends CI_Controller
     public function personalList() {
         $this->load->view('/tom/personalList');
     }
+    public function personalListMaster() {
+        $this->load->view('/tom/personalList_master');
+    }
     public function whoami() {
         $this->load->view('/tom/whoami');
     }

@@ -15,6 +15,7 @@ class Tom extends CI_Controller
         $this->load->model('api/Tom_m', 'tom_m');
         $this->load->library('linput');
         $this->load->helper('url');
+        $this->load->library('pdf');
     }
     /**
      * 게시판 리스트
@@ -36,6 +37,25 @@ class Tom extends CI_Controller
         $res = $this->tom_m->getPersonalList();
 
         echo json_encode($res);
+    }
+
+    /**
+     * PDF 기능만들거면 쓰면 될듯
+     */
+    public function pdf_whoami() {
+
+        $indata = [];
+        $page = 0;
+        $pageSize = 999;
+
+        $res = $this->tom_m->getProjectList($page, $pageSize, $indata);  
+           
+        $title = "이대호 경력기술서";
+        $subject = "제목";
+        $contents = json_encode($res["list"], JSON_UNESCAPED_UNICODE);
+
+        $pdf = $this->pdf->down($title, $subject, $contents);
+        echo json_encode($pdf);
     }
 
    

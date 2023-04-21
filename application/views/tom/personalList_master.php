@@ -160,6 +160,9 @@
                 this.isSummaryOpen = this.isSummaryOpen.map((item, i) => {
                     return i === index ? event.target.open : item
                 });
+            },
+            excel() {
+                
             }
         }
 

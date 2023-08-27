@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 // Load TCPDF library
-require_once APPPATH . 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 /**
  * pdf 라이브러리
  */

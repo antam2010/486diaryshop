@@ -1,12 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-if($_SERVER['HTTP_HOST'] == '486diary.shop') {
-    $config['base_url'] = 'http://486diary.shop';
-} else {
-    $config['base_url'] = 'http://local.486diary.shop';
+switch ($_SERVER['HTTP_HOST']) {
+    case 'daeho.shop':
+        $config['base_url'] = 'http://daeho.shop';
+        break;
+    case 'daeho.store':
+        $config['base_url'] = 'http://daeho.store';
+        break;
+    default:
+        $config['base_url'] = 'http://local.486diary.shop'; 
+        break;
 }
-
 
 /*
 |--------------------------------------------------------------------------
